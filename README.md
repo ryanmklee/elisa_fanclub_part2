@@ -1,3 +1,12 @@
 # CPSC 410 Software Visualization Project
 
-To download datasets go to http://bit.ly/2ToaBpp and download the dataset. There is one for training data and another one for test data.
+## Group 17   
+Andy Siu  
+Cindy Hsu  
+Gavin Ham  
+Gary Gao   
+Ryan Lee   
+
+## Dataset and Project Information
+[Download Dataset](http://bit.ly/2ToaBpp)  
+[Project Proposal](https://bit.ly/2TjXRjK)
