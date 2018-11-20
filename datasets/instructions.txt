@@ -1,0 +1,7 @@
+Go to http://bit.ly/2ToaBpp and download the dataset and copy and paste the following files into this folder:
+
+- test_images.csv
+- test_labels.csv
+- train_images.csv
+- train_labels.csv
+
