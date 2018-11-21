@@ -19,11 +19,13 @@ class BarChart:
     function_names = []
 
     def __init__(self, lines):
+        # TODO: We should only be setting percentages, and function names in the constructor remove when we filter
+        # TODO: outside of the class
         self.lines = lines
 
     def _generate_gradient(self):
         print('Generating gradient')
-        gradient = list(range(100, 0, -int(100 / len(self.percentages))))
+        gradient = list(range(100, 0, -int(100 / len(self.percentages))))[:len(self.percentages)]
         gradient = [x / 100.0 for x in gradient]
         self.gradient = gradient
 

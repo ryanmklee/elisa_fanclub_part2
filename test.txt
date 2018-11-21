@@ -1,153 +1,153 @@
-         379 function calls (378 primitive calls) in 0.244 seconds
+         379 function calls (378 primitive calls) in 0.225 seconds
 
    Ordered by: internal time
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-        1    0.224    0.224    0.243    0.243 {method 'query' of 'sklearn.neighbors.kd_tree.BinaryTree' objects}
-       15    0.018    0.001    0.018    0.001 {built-in method numpy.core.multiarray.array}
-        4    0.001    0.000    0.001    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+        1    0.203    0.203    0.224    0.224 {method 'query' of 'sklearn.neighbors.kd_tree.BinaryTree' objects}
+       15    0.019    0.001    0.019    0.001 {built-in method numpy.core.multiarray.array}
+        4    0.002    0.000    0.002    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+        3    0.000    0.000    0.021    0.007 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:357(check_array)
+        1    0.000    0.000    0.225    0.225 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/neighbors/classification.py:133(predict)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/scipy/stats/stats.py:386(mode)
-        3    0.000    0.000    0.019    0.006 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:357(check_array)
-        1    0.000    0.000    0.243    0.243 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:932(__call__)
-        1    0.000    0.000    0.244    0.244 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/neighbors/classification.py:133(predict)
-        1    0.000    0.000    0.243    0.243 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/neighbors/base.py:323(kneighbors)
+        1    0.000    0.000    0.225    0.225 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/neighbors/base.py:323(kneighbors)
        22    0.000    0.000    0.000    0.000 {built-in method builtins.getattr}
-        2    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.where}
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/scipy/stats/stats.py:228(_contains_nan)
-       26    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/fromnumeric.py:1471(ravel)
-        3    0.000    0.000    0.001    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:40(_assert_all_finite)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:186(unregister)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:650(__init__)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/lib/arraysetops.py:268(_unique1d)
-        2    0.000    0.000    0.243    0.121 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:801(dispatch_one_batch)
+        3    0.000    0.000    0.002    0.001 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:40(_assert_all_finite)
         3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:148(_shape_repr)
+        1    0.000    0.000    0.224    0.224 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:932(__call__)
+       26    0.000    0.000    0.000    0.000 {built-in method builtins.hasattr}
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:650(__init__)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/scipy/stats/stats.py:228(_contains_nan)
+        2    0.000    0.000    0.224    0.112 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:801(dispatch_one_batch)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/lib/arraysetops.py:268(_unique1d)
         3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/warnings.py:159(_add_filter)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/distutils/version.py:307(parse)
-        1    0.000    0.000    0.243    0.243 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:258(__call__)
-       21    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:78(get_active_backend)
-        2    0.000    0.000    0.000    0.000 {method 'split' of '_sre.SRE_Pattern' objects}
         3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/warnings.py:449(__enter__)
-        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/fromnumeric.py:64(_wrapreduction)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/functools.py:44(update_wrapper)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:2491(seterr)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:366(__call__)
-      2/1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:735(_initialize_backend)
-        1    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.arange}
-        2    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.concatenate}
-        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:127(_num_samples)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:884(retrieve)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/contextlib.py:59(__init__)
-        3    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.empty}
-        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/fromnumeric.py:1821(sum)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/shape_base.py:63(atleast_2d)
-        9    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:175(<genexpr>)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:252(__init__)
-       25    0.000    0.000    0.000    0.000 {built-in method builtins.len}
         3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/warnings.py:468(__exit__)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/distutils/version.py:307(parse)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:78(get_active_backend)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:366(__call__)
+       21    0.000    0.000    0.000    0.000 {built-in method builtins.isinstance}
+        2    0.000    0.000    0.000    0.000 {method 'split' of '_sre.SRE_Pattern' objects}
+        9    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:175(<genexpr>)
+      2/1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:735(_initialize_backend)
+        3    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/functools.py:44(update_wrapper)
+       25    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+        2    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.where}
+        2    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.concatenate}
+        1    0.000    0.000    0.224    0.224 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:258(__call__)
+        1    0.000    0.000    0.224    0.224 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:764(_dispatch)
+        1    0.000    0.000    0.225    0.225 /Users/ryanlee/Documents/School/CPSC 410/visualization_project/main.py:24(model_predict)
+        1    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.copyto}
+        3    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.empty}
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:2491(seterr)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:252(__init__)
+        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/warnings.py:428(__init__)
+        1    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.arange}
+        4    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numerictypes.py:619(issubclass_)
+        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/fromnumeric.py:64(_wrapreduction)
+        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:127(_num_samples)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/disk.py:41(memstr_to_bytes)
-        1    0.000    0.000    0.243    0.243 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:764(_dispatch)
-        1    0.000    0.000    0.244    0.244 /Users/ryanlee/Documents/School/CPSC 410/visualization_project/main.py:24(model_predict)
+        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/warnings.py:143(simplefilter)
+        7    0.000    0.000    0.019    0.003 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:433(asarray)
+        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/fromnumeric.py:1821(sum)
         2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/lib/shape_base.py:480(expand_dims)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:894(check_is_fitted)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:884(retrieve)
         1    0.000    0.000    0.000    0.000 {method 'sort' of 'numpy.ndarray' objects}
         1    0.000    0.000    0.000    0.000 {method 'take' of 'numpy.ndarray' objects}
         2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:2592(geterr)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/__init__.py:438(gen_even_slices)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:187(get_nested_backend)
-        3    0.000    0.000    0.000    0.000 {method 'join' of 'str' objects}
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/shape_base.py:63(atleast_2d)
+        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:350(_ensure_no_complex_data)
+        4    0.000    0.000    0.000    0.000 {method 'insert' of 'list' objects}
         6    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
-        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/warnings.py:143(simplefilter)
-        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/warnings.py:428(__init__)
-        3    0.000    0.000    0.000    0.000 {method 'ravel' of 'numpy.ndarray' objects}
-        1    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.copyto}
-        7    0.000    0.000    0.018    0.003 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:433(asarray)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/shape_base.py:182(vstack)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/contextlib.py:79(__enter__)
+        3    0.000    0.000    0.000    0.000 {method 'reshape' of 'numpy.ndarray' objects}
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:268(full)
+        1    0.000    0.000    0.002    0.002 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/_methods.py:34(_sum)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/lib/arraysetops.py:121(unique)
         3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/_config.py:12(get_config)
-        3    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:350(_ensure_no_complex_data)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:894(check_is_fitted)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:183(__exit__)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/logger.py:39(short_format_time)
+        1    0.000    0.000    0.224    0.224 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:260(<listcomp>)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:330(delayed)
-        1    0.000    0.000    0.243    0.243 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:180(apply_async)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:345(configure)
         2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/neighbors/base.py:441(<genexpr>)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/contextlib.py:79(__enter__)
-        1    0.000    0.000    0.000    0.000 {method 'flatten' of 'numpy.ndarray' objects}
-        3    0.000    0.000    0.000    0.000 {method 'reshape' of 'numpy.ndarray' objects}
-        2    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.zeros}
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:268(full)
-        8    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:504(asanyarray)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:2887(__init__)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/logger.py:39(short_format_time)
-        1    0.000    0.000    0.243    0.243 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:260(<listcomp>)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:250(__init__)
-        1    0.000    0.000    0.000    0.000 <string>:12(__new__)
-        4    0.000    0.000    0.000    0.000 {method 'insert' of 'list' objects}
         3    0.000    0.000    0.000    0.000 {method 'remove' of 'list' objects}
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/contextlib.py:157(helper)
-        4    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numerictypes.py:619(issubclass_)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numerictypes.py:687(issubdtype)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:183(__exit__)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:401(effective_n_jobs)
-        9    0.000    0.000    0.000    0.000 {built-in method _warnings._filters_mutated}
-        4    0.000    0.000    0.000    0.000 {built-in method builtins.setattr}
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/distutils/version.py:312(<listcomp>)
-        1    0.000    0.000    0.001    0.001 {method 'sum' of 'numpy.ndarray' objects}
-        2    0.000    0.000    0.000    0.000 {built-in method numpy.core.umath.seterrobj}
-        1    0.000    0.000    0.001    0.001 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/_methods.py:34(_sum)
-        4    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/scipy/sparse/base.py:1187(isspmatrix)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:167(__init__)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/logger.py:23(_squeeze_time)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/multiprocessing/context.py:232(get_context)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:66(configure)
-        1    0.000    0.000    0.243    0.243 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:542(__init__)
-        1    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
         3    0.000    0.000    0.000    0.000 {method 'copy' of 'dict' objects}
-        1    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
+        3    0.000    0.000    0.000    0.000 {method 'ravel' of 'numpy.ndarray' objects}
+        1    0.000    0.000    0.002    0.002 {method 'sum' of 'numpy.ndarray' objects}
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numerictypes.py:687(issubdtype)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/shape_base.py:182(vstack)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/__init__.py:438(gen_even_slices)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:167(__init__)
+        1    0.000    0.000    0.224    0.224 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:180(apply_async)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:187(get_nested_backend)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:250(__init__)
+        1    0.000    0.000    0.224    0.224 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:542(__init__)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/contextlib.py:59(__init__)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/contextlib.py:85(__exit__)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/contextlib.py:157(helper)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/distutils/version.py:51(__lt__)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/distutils/version.py:302(__init__)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/distutils/version.py:312(<listcomp>)
+        2    0.000    0.000    0.000    0.000 {built-in method numpy.core.multiarray.zeros}
+        2    0.000    0.000    0.000    0.000 {built-in method numpy.core.umath.seterrobj}
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:2887(__init__)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:2896(__exit__)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/fromnumeric.py:1471(ravel)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/shape_base.py:234(<listcomp>)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:186(unregister)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/logger.py:23(_squeeze_time)
+        1    0.000    0.000    0.000    0.000 <string>:12(__new__)
+        3    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+        2    0.000    0.000    0.000    0.000 {built-in method builtins.next}
+        4    0.000    0.000    0.000    0.000 {built-in method builtins.setattr}
         4    0.000    0.000    0.000    0.000 {built-in method time.time}
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/functools.py:74(wraps)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/contextlib.py:85(__exit__)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/distutils/version.py:302(__init__)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/distutils/version.py:331(_cmp)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/threading.py:74(RLock)
+        1    0.000    0.000    0.000    0.000 {method 'flatten' of 'numpy.ndarray' objects}
+        8    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:504(asanyarray)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:2891(__enter__)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:361(__init__)
+        4    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/scipy/sparse/base.py:1187(isspmatrix)
+        4    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:263(__len__)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:401(effective_n_jobs)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:760(_terminate_backend)
-        4    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:36(__init__)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/scipy/stats/stats.py:196(_chk_asarray)
-        1    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
-        3    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
-        1    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x10ad80750}
-        1    0.000    0.000    0.000    0.000 {built-in method builtins.max}
-        2    0.000    0.000    0.000    0.000 {built-in method builtins.next}
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/distutils/version.py:51(__lt__)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/numeric.py:2896(__exit__)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/core/shape_base.py:234(<listcomp>)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:180(__enter__)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:828(_print)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:841(print_progress)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:89(batch_completed)
-        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:133(retrieval_context)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:197(effective_n_jobs)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:476(effective_n_jobs)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/multiprocessing/context.py:232(get_context)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:66(configure)
+        4    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:36(__init__)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:585(__init__)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/neighbors/base.py:61(_get_weights)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/scipy/stats/stats.py:196(_chk_asarray)
         2    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
-        1    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
         1    0.000    0.000    0.000    0.000 {method 'pop' of 'dict' objects}
-        1    0.000    0.000    0.000    0.000 {built-in method builtins.all}
-        1    0.000    0.000    0.000    0.000 {built-in method builtins.iter}
+        1    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method __new__ of type object at 0x100944750}
+        1    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
+        9    0.000    0.000    0.000    0.000 {built-in method _warnings._filters_mutated}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.max}
         4    0.000    0.000    0.000    0.000 {built-in method numpy.core.umath.geterrobj}
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/numpy/lib/arraysetops.py:113(_unpack_tuple)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:180(__enter__)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:340(delayed_function)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:361(__init__)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:828(_print)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:174(effective_n_jobs)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:197(effective_n_jobs)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:476(effective_n_jobs)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:547(get)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/neighbors/base.py:61(_get_weights)
+        1    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.all}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.iter}
         1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/utils/validation.py:941(<listcomp>)
-        4    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:263(__len__)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/parallel.py:340(delayed_function)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:76(start_call)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:79(stop_call)
         1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:82(terminate)
         2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:85(compute_batch_size)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:174(effective_n_jobs)
-        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:547(get)
+        1    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:89(batch_completed)
+        2    0.000    0.000    0.000    0.000 /Users/ryanlee/anaconda3/envs/cpsc340/lib/python3.6/site-packages/sklearn/externals/joblib/_parallel_backends.py:133(retrieval_context)
 
 
