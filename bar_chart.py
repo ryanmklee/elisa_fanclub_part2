@@ -1,6 +1,4 @@
 import numpy as np
-import plotly.plotly as py
-import plotly.graph_objs as go
 import plotly
 import plotly.graph_objs as go
 
@@ -9,7 +7,7 @@ ORIENTATION = 'h'
 
 WIDTH = 3
 
-BASE_COLOR = 'rgba(246, 78, 139, {})'
+BASE_COLOR = 'rgba(0, 0, 0, {})'
 NAME = 'TIME %'
 
 BARCHART_FILE_OUTPUT = 'barchart.html'
@@ -54,6 +52,7 @@ class BarChart:
         )
 
     def generate_graph(self):
+        # TODO: Build graph from varying input size, stacking horizontal bar graphs
         self._filter_data()
         self._generate_gradient()
         traces = []

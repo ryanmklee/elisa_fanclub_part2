@@ -162,6 +162,7 @@ def generate_graph(top_labels, x_data, y_data):
 
 
 if __name__ == '__main__':
+    # TODO: CLI tools to perform profiling
     print('---Beginning profiler---\n')
     profiler = cProfile.Profile()
     size = 100
@@ -176,6 +177,7 @@ if __name__ == '__main__':
     model_predict(volcano_test_X, model)
     profiler.disable()
     print('---Finished profiling---')
+    # TODO: Filter data for better formatting
     headers, lines = convert_profiler_to_lists(profiler)
     # visualize_runtime(lines) TODO: Remove this if we dont need it later
     print('---Begin visualization of profiled code---')
