@@ -3,6 +3,7 @@
 
 # our stuff
 datasets/*.csv
+*.yml
 
 # User-specific stuff
 .idea/**/workspace.xml

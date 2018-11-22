@@ -1,54 +1,12 @@
-import cProfile
-import pstats
-import io
 import os
-
-import numpy as np
-import pandas as pd
-from sklearn.neighbors import KNeighborsClassifier
 
 import plotly.plotly as py
 import plotly.io as pio
 import plotly.graph_objs as go
 
-from bar_chart import BarChart
-
-
-# testing stuff out for now
-
-
-def load_csv_as_np_array(filename):
-    return pd.read_csv(os.path.join('datasets', filename)).values
-
-
-def model_predict(X, model):
-    return model.predict(X)
-
-
-def convert_profiler_to_lists(profiler):
-    lines = []
-    s = io.StringIO()
-    stats = pstats.Stats(profiler, stream=s).sort_stats('tottime')
-    stats.print_stats()
-
-    with open('test.txt', 'w+') as f:
-        f.write(s.getvalue())
-
-    with open('test.txt', 'r') as f:
-        for _ in range(4):
-            f.readline()
-
-        headers = [column for column in f.readline().split() if column]
-
-        for line in f:
-            if line:
-                if line.find("{") != -1:
-                    numbers, fn_name = line.split("{")
-                    lines.append(numbers.split() + [fn_name.split("}")[0]])
-                else:
-                    lines.append(line.split())
-
-    return headers, lines
+from viz.builder.horizontal_bar_chart_builder import BarChart
+from viz.viz_profiler import VizProfiler
+from libs.benchmark_agent import BenchmarkAgent
 
 
 def visualize_runtime(lines):
@@ -163,22 +121,11 @@ def generate_graph(top_labels, x_data, y_data):
 
 if __name__ == '__main__':
     # TODO: CLI tools to perform profiling
-    print('---Beginning profiler---\n')
-    profiler = cProfile.Profile()
-    size = 100
-    volcano_test_X = load_csv_as_np_array('test_images.csv')[:size, :]
-    volcano_test_y = load_csv_as_np_array('test_labels.csv')[1:size + 1, :1].flatten()
-
-    volcano_train_X = load_csv_as_np_array('train_images.csv')[:size, :]
-    volcano_train_y = load_csv_as_np_array('train_labels.csv')[1:size + 1, :1].flatten()
-    model = KNeighborsClassifier().fit(volcano_test_X, volcano_test_y)
-
-    profiler.enable()
-    model_predict(volcano_test_X, model)
-    profiler.disable()
-    print('---Finished profiling---')
     # TODO: Filter data for better formatting
-    headers, lines = convert_profiler_to_lists(profiler)
+    profiler = VizProfiler()
+    profiler.run(BenchmarkAgent())
+    headers, lines = profiler.get_stat_lists()
+
     # visualize_runtime(lines) TODO: Remove this if we dont need it later
     print('---Begin visualization of profiled code---')
     bar = BarChart(lines)
