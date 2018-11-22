@@ -1,6 +1,7 @@
 import numpy as np
 
 from viz.builder.bar_chart_builder import BarChart
+from libs import utils
 
 
 class VizFactory:
@@ -25,9 +26,12 @@ class VizFactory:
         time_function_list = np.array(list(map(lambda line: np.take(line, [1, 5]), np_lines)))
         percentages = np.round(time_function_list[:, 0].astype(np.float64) /
                                     np.sum(time_function_list[:, 0].astype(np.float64)) * 100, decimals=1)
-        function_names = time_function_list[:, 1]
+        function_names = self.process_function_names(time_function_list[:, 1])
 
         return percentages, function_names
+
+    def process_function_names(self, function_names):
+        return [utils.extract_constructor(name) or utils.extract_method(name) for name in function_names]
 
     def _generate_gradient(self, percentages):
         print('Generating gradient')
