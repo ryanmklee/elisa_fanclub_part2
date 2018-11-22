@@ -9,13 +9,25 @@ class VizFactory:
         "horizontal_bar": BarChart
     }
 
-    def render_viz(self, chart_type, data):
-        function_names, percentages = self.filter_data(data)
+    def render_viz(self, chart_type, n_sizes, iteration_data):
+
+        # withdraw first iteration to form backbone for processed_lines
+        # then add each pcnt to the corresponding backbone entry for each extra iteration
+        baseline_data = iteration_data[0]
+        percentages, function_names = self.filter_data(baseline_data)
         gradient = self._generate_gradient(percentages)
-        processed_lines = [(pcnt, fn, grad) for pcnt, fn, grad in
+        processed_lines = [([pcnt], fn, grad) for pcnt, fn, grad in
                            zip(percentages, function_names, gradient)]
 
-        builder = self.FACTORY[chart_type](processed_lines)
+        for idx in range(1, len(iteration_data)):
+            line_percentages, _ = self.filter_data(iteration_data[idx])
+            # TODO: filter_data removes entries with pcnt = 0, this is an issue because the first iteration
+            # TODO: might've had a non-zero pcnt entry, and removing this messes up bars later down
+            # TODO: fix filter_data so that it adds 0 when we need the entry
+            for i, pcnt in enumerate(line_percentages):
+                processed_lines[i][0].append(pcnt)
+
+        builder = self.FACTORY[chart_type](processed_lines, n_sizes)
         builder.render()
 
     def filter_data(self, data):

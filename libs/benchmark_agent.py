@@ -6,11 +6,10 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 class BenchmarkAgent:
-    def run_before(self):
+    def run_before(self, size=100):
         def load_csv_as_np_array(filename):
             return pd.read_csv(os.path.join('datasets', filename)).values
 
-        size = 100
         self.volcano_test_X = load_csv_as_np_array('test_images.csv')[:size, :]
         self.volcano_test_y = load_csv_as_np_array('test_labels.csv')[1:size + 1, :1].flatten()
 

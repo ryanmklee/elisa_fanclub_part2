@@ -8,8 +8,8 @@ class VizProfiler:
     def __init__(self):
         self.profiler = cProfile.Profile()
 
-    def run(self, agent):
-        agent.run_before()
+    def run(self, agent, size):
+        agent.run_before(size)
 
         print('---Beginning profiler---\n')
         self.profiler.enable()
@@ -18,6 +18,20 @@ class VizProfiler:
         print('---Finished profiling---')
 
         agent.run_after()
+
+    def run_iterations(self, agent, size, scale):
+        iteration_stats = []
+        n_sizes = []
+
+        while size >= scale:
+            n_sizes.append("N = " + str(size))
+            self.refresh_profiler()
+            self.run(agent, size)
+            iteration_stats.append(self.get_stat_lists()[1])
+
+            size //= scale
+
+        return n_sizes, iteration_stats
 
     def get_stat_lists(self):
         lines = []
@@ -49,3 +63,6 @@ class VizProfiler:
         os.remove('test.txt')
 
         return headers, lines
+
+    def refresh_profiler(self):
+        self.profiler = cProfile.Profile()

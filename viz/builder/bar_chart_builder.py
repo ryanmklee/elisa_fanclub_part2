@@ -13,15 +13,16 @@ BARCHART_FILE_OUTPUT = 'barchart.html'
 
 
 class BarChart:
-    def __init__(self, lines):
+    def __init__(self, lines, n_sizes):
         # TODO: We should only be setting percentages, and function names in the constructor remove when we filter
         # TODO: outside of the class
         self.lines = lines
+        self.n_sizes = n_sizes
 
     def _generate_trace(self, x, y, step):
         return go.Bar(
-            y=[NAME],
-            x=[x],
+            y=self.n_sizes,
+            x=x,
             name=y,
             orientation=ORIENTATION,
             marker=dict(

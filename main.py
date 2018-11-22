@@ -7,9 +7,8 @@ if __name__ == '__main__':
     # TODO: CLI tools to perform profiling
     # TODO: Filter data for better formatting
     profiler = VizProfiler()
-    profiler.run(BenchmarkAgent())
-    headers, lines = profiler.get_stat_lists()
+    n_sizes, iterative_stats = profiler.run_iterations(BenchmarkAgent(), 1000, 10)
 
     factory = VizFactory()
     print('---Begin visualization of profiled code---')
-    factory.render_viz("horizontal_bar", lines)
+    factory.render_viz("horizontal_bar", n_sizes, iterative_stats)
