@@ -7,6 +7,7 @@ import os
 class VizProfiler:
     def __init__(self):
         self.profiler = cProfile.Profile()
+        self.headers = None
 
     def run(self, agent, size):
         agent.run_before(size)
@@ -27,11 +28,11 @@ class VizProfiler:
             n_sizes.append("N = " + str(size))
             self.refresh_profiler()
             self.run(agent, size)
-            iteration_stats.append(self.get_stat_lists()[1])
+            iteration_stats.append(self.get_stat_lists())
 
             size //= scale
 
-        return n_sizes, iteration_stats
+        return n_sizes, iteration_stats, self.headers
 
     def get_stat_lists(self):
         lines = []
@@ -62,7 +63,10 @@ class VizProfiler:
         # cleanup file from disk
         os.remove('test.txt')
 
-        return headers, lines
+        if self.headers is None:
+            self.headers = headers
+
+        return lines
 
     def refresh_profiler(self):
         self.profiler = cProfile.Profile()
