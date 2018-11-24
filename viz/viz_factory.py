@@ -1,15 +1,15 @@
 import numpy as np
 
-from viz.builder.bar_chart_builder import BarChart
-from viz.builder.table_builder import Table
+import viz.builder as vb
 import viz.viz_constants as vc
 from libs import utils
 
 
 class VizFactory:
     FACTORY = {
-        vc.HORIZONTAL_BAR_CHART: BarChart,
-        vc.TABLE: Table
+        vc.HORIZONTAL_BAR_CHART: vb.BarChart,
+        vc.TABLE: vb.Table,
+        vc.LINE_CHART: vb.LineChart
     }
 
     def render_viz(self, chart_type, headers, n_sizes, iteration_data):

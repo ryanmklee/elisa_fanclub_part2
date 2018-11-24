@@ -28,3 +28,8 @@ def extract_method(function_name):
         extracted = split[3].strip("'") + "." + split[1].strip("'")
 
     return extracted
+
+
+def format_rgb(rgb_array):
+    return 'rgb({}, {}, {})'.format(*rgb_array)
+

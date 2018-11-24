@@ -1,4 +1,3 @@
-import plotly
 import plotly.graph_objs as go
 
 from viz.builder.abstract_builder import AbstractViz
