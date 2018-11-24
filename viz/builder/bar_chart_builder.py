@@ -3,11 +3,11 @@ import plotly.graph_objs as go
 from viz.builder.abstract_builder import AbstractViz
 import viz.viz_constants as vc
 
-WIDTH = 3
-BASE_COLOR = 'rgba(0, 0, 0, {})'
-
 
 class BarChart(AbstractViz):
+    WIDTH = 3
+    BASE_COLOR = 'rgba(0, 0, 0, {})'
+
     def __init__(self, lines, n_sizes):
         super().__init__(lines, n_sizes)
         self.file_output = vc.BARCHART_FILE_OUTPUT
@@ -19,10 +19,10 @@ class BarChart(AbstractViz):
             name=y,
             orientation=vc.HORIZONTAL_ORIENTATION,
             marker=dict(
-                color=BASE_COLOR.format(step),
+                color=self.BASE_COLOR.format(step),
                 line=dict(
-                    color=BASE_COLOR.format(step),
-                    width=WIDTH)
+                    color=self.BASE_COLOR.format(step),
+                    width=self.WIDTH)
             )
         )
 
@@ -31,5 +31,8 @@ class BarChart(AbstractViz):
 
     def generate_layout(self):
         return go.Layout(
-            barmode='stack'
+            barmode='stack',
+            xaxis=dict(title='Input Size'),
+            yaxis=dict(title='% of Total Time Taken'),
         )
+
