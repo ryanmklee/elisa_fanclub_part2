@@ -4,6 +4,7 @@
 # our stuff
 datasets/*.csv
 *.yml
+*.html
 
 # User-specific stuff
 .idea/**/workspace.xml

@@ -9,7 +9,8 @@ class VizFactory:
     FACTORY = {
         vc.HORIZONTAL_BAR_CHART: vb.BarChart,
         vc.TABLE: vb.Table,
-        vc.LINE_CHART: vb.LineChart
+        vc.LINE_CHART: vb.LineChart,
+        vc.AREA_CHART: vb.AreaChart
     }
 
     def render_viz(self, chart_type, headers, n_sizes, iteration_data, reverse):
