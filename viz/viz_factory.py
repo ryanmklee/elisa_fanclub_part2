@@ -12,7 +12,7 @@ class VizFactory:
         vc.LINE_CHART: vb.LineChart
     }
 
-    def render_viz(self, chart_type, headers, n_sizes, iteration_data):
+    def render_viz(self, chart_type, headers, n_sizes, iteration_data, reverse):
 
         # withdraw first iteration to form backbone for processed_lines
         # then add each pcnt to the corresponding backbone entry for each extra iteration
@@ -26,6 +26,9 @@ class VizFactory:
             line_percentages = self.extract_iteration_percentages(iteration_data[idx], headers, fn_descriptors)
             for i, pcnt in enumerate(line_percentages):
                 processed_lines[i][0].append(pcnt)
+
+        if reverse:
+            self._reverse_entries(n_sizes, processed_lines)
 
         builder = self.FACTORY[chart_type](processed_lines, n_sizes)
         builder.render()
@@ -71,3 +74,9 @@ class VizFactory:
         print('Generating gradient')
         gradient = list(range(100, 0, -int(100 / len(percentages))))[:len(percentages)]
         return [x / 100.0 for x in gradient]
+
+    def _reverse_entries(self, sizes, lines):
+        sizes.reverse()
+
+        for pcnt, fn, grad in lines:
+            pcnt.reverse()
