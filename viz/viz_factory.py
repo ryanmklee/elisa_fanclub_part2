@@ -1,14 +1,13 @@
 import numpy as np
 
 from viz.builder.bar_chart_builder import BarChart
+import viz.viz_constants as vc
 from libs import utils
 
-TOTAL_TIME = "tottime"
-DESCRIPTOR = "filename:lineno(function)"
 
 class VizFactory:
     FACTORY = {
-        "horizontal_bar": BarChart
+        vc.HORIZONTAL_BAR_CHART: BarChart
     }
 
     def render_viz(self, chart_type, headers, n_sizes, iteration_data):
@@ -48,8 +47,8 @@ class VizFactory:
     # the line itself may be absent, which is why times_function_list has placeholder np.arrays
     def extract_iteration_percentages(self, data, headers, descriptors):
         descriptor_pool = {descriptor: idx for idx, descriptor in enumerate(descriptors)}
-        pcnt_idx = headers.index(TOTAL_TIME)
-        descriptor_idx = headers.index(DESCRIPTOR)
+        pcnt_idx = headers.index(vc.TOTAL_TIME)
+        descriptor_idx = headers.index(vc.DESCRIPTOR)
         time_function_list = [np.array([0, 0]) for _ in range(len(descriptors))]
 
         for line in data:
@@ -64,10 +63,9 @@ class VizFactory:
 
     def _generate_percentages(self, time_function_list):
         return np.round(time_function_list[:, 0].astype(np.float64) /
-                               np.sum(time_function_list[:, 0].astype(np.float64)) * 100, decimals=1)
+                        np.sum(time_function_list[:, 0].astype(np.float64)) * 100, decimals=1)
 
     def _generate_gradient(self, percentages):
         print('Generating gradient')
         gradient = list(range(100, 0, -int(100 / len(percentages))))[:len(percentages)]
         return [x / 100.0 for x in gradient]
-
