@@ -1,7 +1,6 @@
 import cProfile
 import pstats
 import io
-import os
 
 
 class VizProfiler:
@@ -40,28 +39,16 @@ class VizProfiler:
         stats = pstats.Stats(self.profiler, stream=s).sort_stats('tottime')
         stats.print_stats()
 
-        # Profile does not expose an API to us to return the list of stats
-        # in human readable form. We must read it to disk using a string buffer
-        # and read it back in.
-        with open('test.txt', 'w+') as f:
-            f.write(s.getvalue())
+        raw_lines = [l for l in s.getvalue().splitlines()[4:]]
+        headers = [column for column in raw_lines.pop(0).split() if raw_lines]
 
-        with open('test.txt', 'r') as f:
-            for _ in range(4):
-                f.readline()
-
-            headers = [column for column in f.readline().split() if column]
-
-            for line in f:
-                if line:
-                    if line.find("{") != -1:
-                        numbers, fn_name = line.split("{")
-                        lines.append(numbers.split() + [fn_name.split("}")[0]])
-                    else:
-                        lines.append(line.split())
-
-        # cleanup file from disk
-        os.remove('test.txt')
+        for line in raw_lines:
+            if line:
+                if line.find("{") != -1:
+                    numbers, fn_name = line.split("{")
+                    lines.append(numbers.split() + [fn_name[:-1]])
+                else:
+                    lines.append(line.split())
 
         if self.headers is None:
             self.headers = headers
