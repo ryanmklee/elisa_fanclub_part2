@@ -27,7 +27,12 @@ class BarChart(AbstractViz):
         )
 
     def generate_traces(self):
-        return [self._generate_trace(pcnt, fn, grad) for pcnt, fn, grad in self.lines]
+        traces = []
+        for fn, times in self.lines.items():
+            pcnt = times[:, 1]
+            grad = times[0, 3]
+            traces.append(self._generate_trace(pcnt, fn, grad))
+        return traces
 
     def generate_layout(self):
         return go.Layout(
