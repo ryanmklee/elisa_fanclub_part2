@@ -1,9 +1,9 @@
 import argparse
 
-from viz.viz_factory import VizFactory
-from viz.viz_profiler import VizProfiler
 import viz.viz_utils as vu
 from libs.benchmark_agent import BenchmarkAgent
+from viz.viz_factory import VizFactory
+from viz.viz_profiler import VizProfiler
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -34,5 +34,4 @@ if __name__ == '__main__':
         'reverse': reverse,
         'track': track
     }
-    print(render_options)
     factory.render_viz(chart_options[0], headers, n_sizes, iterative_stats, render_options)
