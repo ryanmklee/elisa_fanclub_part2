@@ -14,25 +14,53 @@ class VizFactory:
         vc.STACKED_BAR_CHART: vb.StackedBarChart
     }
 
-    def render_viz(self, chart_type, headers, n_sizes, iteration_data, reverse):
+    def render_viz(self, chart_type, headers, n_sizes, iteration_data, render_options):
+        print(render_options)
+        reverse = render_options["reverse"]
+        track = render_options["track"]
 
-        # withdraw first iteration to form backbone for processed_lines
-        # then add each pcnt to the corresponding backbone entry for each extra iteration
-        baseline_data = iteration_data[0]
-        percentages, fn_names, fn_descriptors = self.extract_base_functions(baseline_data)
-        gradient = self._generate_gradient(percentages)
-        processed_lines = [([pcnt], fn, grad) for pcnt, fn, grad in
-                           zip(percentages, fn_names, gradient)]
+        if not track:
+            chart_data = []
+            all_fns = []
+            for i in range(len(iteration_data)):
+                data = iteration_data[i]
+                percentages, fn_names, fn_descriptors = self.extract_base_functions(data)
+                zipped_data = {n: p for n, p in zip(fn_names, percentages)}
 
-        for idx in range(1, len(iteration_data)):
-            line_percentages = self.extract_iteration_percentages(iteration_data[idx], headers, fn_descriptors)
-            for i, pcnt in enumerate(line_percentages):
-                processed_lines[i][0].append(pcnt)
+                new_fns = set(fn_names) - set(all_fns)
+                all_fns += list(new_fns)
+                for cd in chart_data:
+                    fn = cd[1]
+                    if fn in fn_names:
+                        cd[0].append(zipped_data[fn])
+                    else:
+                        cd[0].append(0)
+                for n, p in zipped_data.items():
+                    if n in new_fns:
+                        filler = [0 for _ in range(i)]
+                        filler.append(p)
+                        chart_data.append([filler, n])
+            gradient = self._generate_gradient(all_fns)
+            for cd in chart_data:
+                cd.append(gradient.pop(0))
+        else:
+            # withdraw first iteration to form backbone for processed_lines
+            # then add each pcnt to the corresponding backbone entry for each extra iteration
+            baseline_data = iteration_data[0]
+            percentages, fn_names, fn_descriptors = self.extract_base_functions(baseline_data)
+            gradient = self._generate_gradient(percentages)
+            chart_data = [([pcnt], fn, grad) for pcnt, fn, grad in
+                               zip(percentages, fn_names, gradient)]
 
-        if reverse:
-            self._reverse_entries(n_sizes, processed_lines)
+            for idx in range(1, len(iteration_data)):
+                line_percentages = self.extract_iteration_percentages(iteration_data[idx], headers, fn_descriptors)
+                for i, pcnt in enumerate(line_percentages):
+                    chart_data[i][0].append(pcnt)
 
-        builder = self.FACTORY[chart_type](processed_lines, n_sizes)
+            if reverse:
+                self._reverse_entries(n_sizes, chart_data)
+
+        builder = self.FACTORY[chart_type](chart_data, n_sizes)
         builder.render()
 
     # returns 3-tuple with relevant functions we want to analyze
