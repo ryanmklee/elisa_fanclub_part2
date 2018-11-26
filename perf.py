@@ -11,10 +11,15 @@ if __name__ == '__main__':
                         help='Takes chart type, max input size, and reduction scale')
     parser.add_argument('-r', '--reverse', help="reverse ordering of profile entries",
                         action="store_true")
+    parser.add_argument('-t', '--track', help="including this flag causes the visualization to only track relevant "
+                                              "functions from the first iteration, rather than relevant functions for "
+                                              "each iteration",
+                        action="store_true")
     args = parser.parse_args()
 
     chart_options = args.chart
     reverse = args.reverse
+    track = args.track
 
     if not vu.check_chart_args(chart_options):
         raise argparse.ArgumentTypeError("Illegal arguments detected, see --help")
@@ -25,4 +30,9 @@ if __name__ == '__main__':
 
     factory = VizFactory()
     print('---Begin visualization of profiled code---')
-    factory.render_viz(chart_options[0], headers, n_sizes, iterative_stats, reverse)
+    render_options = {
+        'reverse': reverse,
+        'track': track
+    }
+    print(render_options)
+    factory.render_viz(chart_options[0], headers, n_sizes, iterative_stats, render_options)
