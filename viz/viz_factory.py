@@ -11,7 +11,8 @@ class VizFactory:
         vc.TABLE: vb.Table,
         vc.LINE_CHART: vb.LineChart,
         vc.AREA_CHART: vb.AreaChart,
-        vc.STACKED_BAR_CHART: vb.StackedBarChart
+        vc.STACKED_BAR_CHART: vb.StackedBarChart,
+        vc.BUBBLE_CHART: vb.BubbleChart
     }
 
     def render_viz(self, chart_type, headers, n_sizes, iteration_data, reverse):
