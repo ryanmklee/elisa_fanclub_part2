@@ -48,13 +48,13 @@ class BubbleChart(AbstractViz):
 
     def generate_layout(self):
         return go.Layout(
-            title='Call Count vs Call Time on Varied Input Sizes',
+            title='Call Count vs Call Time on Staggered Input Sizes',
             xaxis=dict(
                 title='Number of Calls',
                 type='log',
             ),
             yaxis=dict(
-                title='Average Time Per Call',
+                title='Average Time Per Call (s)',
                 type='log',
             )
         )
