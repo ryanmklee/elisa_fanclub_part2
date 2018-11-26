@@ -19,6 +19,7 @@ class VizFactory:
 
         # withdraw first iteration to form backbone for processed_lines
         # then add each pcnt to the corresponding backbone entry for each extra iteration
+        FIELDS = 6
         tottime_idx = headers.index(vc.TOTAL_TIME),
         desc_idx = headers.index(vc.DESCRIPTOR)
 
@@ -28,7 +29,7 @@ class VizFactory:
         fn_times = {desc: [] for desc in fn_names}
 
         for data in iteration_data:
-            iter_lines = self.extract_iter_lines(data, fn_descriptors, desc_idx)
+            iter_lines = self.extract_iter_lines(data, fn_descriptors, desc_idx, FIELDS)
             percentages = self._generate_percentages(iter_lines[:, tottime_idx])
             gradient = self._generate_gradient(percentages)
             for idx, line in enumerate(iter_lines):
@@ -53,10 +54,10 @@ class VizFactory:
             map(np.array, lines)
         )))
 
-    def extract_iter_lines(self, iteration_data, descriptors, d):
+    def extract_iter_lines(self, iteration_data, descriptors, d, fields):
         descriptor_pool = {descriptor: idx for idx, descriptor in enumerate(descriptors)}
         # in case function is never called in non-baseline iterations
-        iter_lines = [np.array([0] * 6) for _ in range(len(descriptors))]
+        iter_lines = [np.array([0.] * fields) for _ in range(len(descriptors))]
         for line in iteration_data:
             if line and line[d] in descriptor_pool:
                 pool_idx = descriptor_pool[line[d]]

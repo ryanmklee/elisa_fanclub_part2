@@ -1,9 +1,9 @@
 import plotly.graph_objs as go
 
-from viz.builder.line_chart_builder import LineChart
 import viz.viz_constants as vc
 from libs.colors import DARK_PALETTE
 from libs.utils import format_rgb
+from viz.builder.line_chart_builder import LineChart
 
 
 class AreaChart(LineChart):
@@ -11,9 +11,7 @@ class AreaChart(LineChart):
         super().__init__(lines, n_sizes)
         self.file_output = vc.AREACHART_FILE_OUTPUT
 
-    def _generate_trace(self, line, color_idx):
-        pcnt, fn, grad = line
-
+    def _generate_trace(self, pcnt, fn, grad, color_idx):
         return go.Scatter(
             x=self.n_sizes,
             y=pcnt,

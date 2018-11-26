@@ -1,7 +1,7 @@
 import plotly.graph_objs as go
 
-from viz.builder.abstract_builder import AbstractViz
 import viz.viz_constants as vc
+from viz.builder.abstract_builder import AbstractViz
 
 
 class BubbleChart(AbstractViz):
@@ -32,12 +32,18 @@ class BubbleChart(AbstractViz):
 
     def generate_traces(self):
         traces = []
-        fn_names = list(self.lines.keys())
-        fn_points = map(lambda nd: nd.tolist(), self.lines.values())
+        fn_names = list(self.fn_pts_map.keys())
+        fn_points = map(lambda nd: nd.tolist(), self.fn_pts_map.values())
         input_points = list(zip(*fn_points))
+
         for size in range(len(self.n_sizes)):
             ncalls, pcnt, percall, _ = [list(map(float, ls)) for ls in zip(*input_points[size])]
+            # cProfile only saves up to 3 decimal points
+            # Zero per-call nodes are not rendered because of the chart's log axis
+            # Set to 1us if ncalls > 0 to forcibly render the point
+            percall = [num if num or not ncalls[i] else 0.000001 for i, num in enumerate(percall)]
             traces.append(self._generate_trace(ncalls, pcnt, percall, fn_names, self.n_sizes[size]))
+
         return traces
 
     def generate_layout(self):
@@ -52,4 +58,3 @@ class BubbleChart(AbstractViz):
                 type='log',
             )
         )
-
