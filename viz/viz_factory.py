@@ -26,7 +26,7 @@ class VizFactory:
         baseline_data = iteration_data[0]
         fn_descriptors = self.extract_base_lines(baseline_data, tottime_idx)[:, desc_idx]
         fn_names = self.process_function_names(fn_descriptors)
-        fn_times = {desc: [] for desc in fn_names}
+        fn_points = {desc: [] for desc in fn_names}
 
         for data in iteration_data:
             iter_lines = self.extract_iter_lines(data, fn_descriptors, desc_idx, FIELDS)
@@ -35,14 +35,14 @@ class VizFactory:
             for idx, line in enumerate(iter_lines):
                 ncalls = line[vc.NCALL_IDX]
                 percall = line[vc.PERCALL_IDX]
-                fn_times[fn_names[idx]].append(
+                fn_points[fn_names[idx]].append(
                     [ncalls, percentages.item(idx), percall, gradient[idx]]
                 )
 
-        # if reverse:
-        #     self._reverse_entries(n_sizes, fn_times.values())
+        if reverse:
+            self._reverse_entries(n_sizes, fn_points.values())
 
-        np_times = {k: np.array(v) for k, v in fn_times.items()}
+        np_times = {k: np.array(v) for k, v in fn_points.items()}
         builder = self.FACTORY[chart_type](np_times, n_sizes)
         builder.render()
 
@@ -76,8 +76,8 @@ class VizFactory:
         gradient = list(range(100, 0, -int(100 / len(percentages))))[:len(percentages)]
         return [x / 100.0 for x in gradient]
 
-    def _reverse_entries(self, sizes, lines):
+    def _reverse_entries(self, sizes, fn_points):
         sizes.reverse()
 
-        for pcnt, fn, grad in lines:
-            pcnt.reverse()
+        for point_group in fn_points:
+            point_group.reverse()
