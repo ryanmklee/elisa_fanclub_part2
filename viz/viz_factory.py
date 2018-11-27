@@ -18,13 +18,14 @@ class VizFactory:
         print(render_options)
         reverse = render_options["reverse"]
         track = render_options["track"]
+        significance = render_options["significance"]
 
         if not track:
             chart_data = []
             all_fns = []
             for i in range(len(iteration_data)):
                 data = iteration_data[i]
-                percentages, fn_names, fn_descriptors = self.extract_base_functions(data)
+                percentages, fn_names, fn_descriptors = self.extract_base_functions(data, significance)
                 zipped_data = {n: p for n, p in zip(fn_names, percentages)}
 
                 new_fns = set(fn_names) - set(all_fns)
@@ -47,7 +48,7 @@ class VizFactory:
             # withdraw first iteration to form backbone for processed_lines
             # then add each pcnt to the corresponding backbone entry for each extra iteration
             baseline_data = iteration_data[0]
-            percentages, fn_names, fn_descriptors = self.extract_base_functions(baseline_data)
+            percentages, fn_names, fn_descriptors = self.extract_base_functions(baseline_data, significance)
             gradient = self._generate_gradient(percentages)
             chart_data = [([pcnt], fn, grad) for pcnt, fn, grad in
                                zip(percentages, fn_names, gradient)]
@@ -65,13 +66,13 @@ class VizFactory:
 
     # returns 3-tuple with relevant functions we want to analyze
     # list of percentages, list of processed function names, list of their raw names for later iterations
-    def extract_base_functions(self, data):
+    def extract_base_functions(self, data, significance):
         print('Filtering data for visualization')
         lines = [x for x in data if x != []]
         np_lines = list(map(lambda line: np.array(line), lines))
         np_lines = list(filter(lambda line: float(line[1]) > 0, np_lines))
         time_function_list = np.array(list(map(lambda line: np.take(line, [1, 5]), np_lines)))
-        percentages = self._generate_percentages(time_function_list)
+        percentages = list(filter(lambda p: p > significance, self._generate_percentages(time_function_list)))
         function_names = self.process_function_names(time_function_list[:, 1])
 
         return percentages, function_names, time_function_list[:, 1]
@@ -94,7 +95,7 @@ class VizFactory:
         return self._generate_percentages(np.asarray(time_function_list))
 
     def process_function_names(self, function_names):
-        return [utils.extract_constructor(name) or utils.extract_method(name) for name in function_names]
+        return [utils.extract_constructor(name) or utils.extract_method(name) or name for name in function_names]
 
     def _generate_percentages(self, time_function_list):
         return np.round(time_function_list[:, 0].astype(np.float64) /
