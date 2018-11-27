@@ -105,7 +105,13 @@ class VizFactory:
 
     def _generate_gradient(self, percentages):
         print('Generating gradient')
-        gradient = list(range(100, 0, -int(100 / len(percentages))))[:len(percentages)]
+        interval = max(100 / len(percentages), 10)
+        interval_count = 100 / interval
+        subinterval = interval_count / (len(percentages) / interval)
+        base_val = 100
+        gradient = []
+        for i in range(len(percentages)):
+            gradient.append(base_val - interval*(i % interval_count) - subinterval*int(i / interval_count))
         return [x / 100.0 for x in gradient]
 
     def _reverse_entries(self, sizes, lines):
