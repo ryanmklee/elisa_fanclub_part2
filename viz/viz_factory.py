@@ -70,7 +70,7 @@ class VizFactory:
         builder.render()
 
     def add_points(self, iter_lines, fn_names, fn_points, tottime_idx, significance):
-        percentages = self._generate_percentages(iter_lines[:, tottime_idx])
+        percentages = list(filter(lambda p: p > significance, self._generate_percentages(iter_lines[:, tottime_idx])))
         gradient = self._generate_gradient(percentages)
         for idx, line in enumerate(iter_lines):
             ncalls = line[vc.NCALL_IDX]
@@ -78,12 +78,14 @@ class VizFactory:
 
             n = fn_names[idx]
             curr = fn_points[n] if n in fn_points else []
-            fn_points[n] = curr + [[ncalls, percentages.item(idx), percall, gradient[idx]]]
+            fn_points[n] = curr + [[ncalls, np.array(percentages).item(idx), percall, gradient[idx]]]
 
     def extract_base_lines(self, data):
         lines = [x for x in data if x != []]
-        #for l in lines:
-        #    l[5] = ' '.join(l[5:])
+        for l in lines:
+            l[5] = ' '.join(l[5:])
+            while len(l) > 6:
+                l.pop()
         return np.array(list(map(np.array, lines)))
 
     def extract_iter_lines(self, iteration_data, descriptors, d):

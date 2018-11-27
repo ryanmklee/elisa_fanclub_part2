@@ -31,6 +31,6 @@ class LineChart(AbstractViz):
 
     def generate_layout(self):
         return dict(title='Changes in % Time with Input',
-                    xaxis=dict(title='Input Size'),
-                    yaxis=dict(title='% of Total Time Taken'),
+                    xaxis=dict(title='% of Total Time Taken'),
+                    yaxis=dict(title='Input Size'),
                     )
