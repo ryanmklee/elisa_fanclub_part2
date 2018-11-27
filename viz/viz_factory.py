@@ -6,12 +6,14 @@ from libs import utils
 
 
 class VizFactory:
+    DEFAULT_LINE = [0] * 6
     FACTORY = {
         vc.HORIZONTAL_BAR_CHART: vb.BarChart,
         vc.TABLE: vb.Table,
         vc.LINE_CHART: vb.LineChart,
         vc.AREA_CHART: vb.AreaChart,
-        vc.STACKED_BAR_CHART: vb.StackedBarChart
+        vc.STACKED_BAR_CHART: vb.StackedBarChart,
+        vc.BUBBLE_CHART: vb.BubbleChart
     }
 
     def render_viz(self, chart_type, headers, n_sizes, iteration_data, render_options):
@@ -19,89 +21,90 @@ class VizFactory:
         reverse = render_options["reverse"]
         track = render_options["track"]
         significance = render_options["significance"]
+        tottime_idx = headers.index(vc.TOTAL_TIME)
+        desc_idx = headers.index(vc.DESCRIPTOR)
+        fn_points = {}
 
-        if not track:
-            chart_data = []
-            all_fns = []
-            for i in range(len(iteration_data)):
-                data = iteration_data[i]
-                percentages, fn_names, fn_descriptors = self.extract_base_functions(data, significance)
-                zipped_data = {n: p for n, p in zip(fn_names, percentages)}
+        if track:
+            # withdraw first iteration to get a filtered list of functions to extract
+            baseline_data = self.extract_base_lines(iteration_data[0])
+            nonzero_data = filter(lambda line: float(line[tottime_idx]) > 0, baseline_data)
+            fn_descriptors = np.array(list(nonzero_data))[:, desc_idx]
+            fn_names = self.process_function_names(fn_descriptors)
 
-                new_fns = set(fn_names) - set(all_fns)
-                all_fns += list(new_fns)
-                for cd in chart_data:
-                    fn = cd[1]
-                    if fn in fn_names:
-                        cd[0].append(zipped_data[fn])
-                    else:
-                        cd[0].append(0)
-                for n, p in zipped_data.items():
-                    if n in new_fns:
-                        filler = [0 for _ in range(i)]
-                        filler.append(p)
-                        chart_data.append([filler, n])
-            gradient = self._generate_gradient(all_fns)
-            for cd in chart_data:
-                cd.append(gradient.pop(0))
+            for data in iteration_data:
+                iter_lines = self.extract_iter_lines(data, fn_descriptors, desc_idx)
+                self.add_points(iter_lines, fn_names, fn_points, tottime_idx, significance)
         else:
-            # withdraw first iteration to form backbone for processed_lines
-            # then add each pcnt to the corresponding backbone entry for each extra iteration
-            baseline_data = iteration_data[0]
-            percentages, fn_names, fn_descriptors = self.extract_base_functions(baseline_data, significance)
-            gradient = self._generate_gradient(percentages)
-            chart_data = [([pcnt], fn, grad) for pcnt, fn, grad in
-                               zip(percentages, fn_names, gradient)]
+            all_descriptors = []
+            all_lines = []
+            iter_lines = []
+            for idx, data in enumerate(iteration_data):
+                baseline_data = self.extract_base_lines(data)
+                named_data = {str(line[desc_idx]): line for line in baseline_data}
+                nonzero_data = filter(lambda line: float(line[tottime_idx]) > 0, baseline_data)
+                fn_descriptors = np.array(list(nonzero_data))[:, desc_idx]
 
-            for idx in range(1, len(iteration_data)):
-                line_percentages = self.extract_iteration_percentages(iteration_data[idx], headers, fn_descriptors)
-                for i, pcnt in enumerate(line_percentages):
-                    chart_data[i][0].append(pcnt)
+                new_fns = set(fn_descriptors) - set(all_descriptors)
+                all_descriptors.extend(new_fns)
+                for fn in new_fns:
+                    for i in range(idx):
+                        backfill_value = self.get_line(all_lines[i], fn)
+                        iter_lines[i].append(backfill_value)
 
-            if reverse:
-                self._reverse_entries(n_sizes, chart_data)
+                all_lines.append(named_data)
+                iter_lines.append([
+                    self.get_line(named_data, descriptor)
+                    for descriptor in all_descriptors
+                ])
 
-        builder = self.FACTORY[chart_type](chart_data, n_sizes)
+            fn_names = self.process_function_names(all_descriptors)
+            for group in iter_lines:  # only contains
+                self.add_points(np.array(group), fn_names, fn_points, tottime_idx, significance)
+
+        if reverse:
+            self._reverse_entries(n_sizes, fn_points.values())
+
+        fn_np_map = {k: np.array(v) for k, v in fn_points.items()}
+        builder = self.FACTORY[chart_type](fn_np_map, n_sizes)
         builder.render()
 
-    # returns 3-tuple with relevant functions we want to analyze
-    # list of percentages, list of processed function names, list of their raw names for later iterations
-    def extract_base_functions(self, data, significance):
-        print('Filtering data for visualization')
+    def add_points(self, iter_lines, fn_names, fn_points, tottime_idx, significance):
+        percentages = self._generate_percentages(iter_lines[:, tottime_idx])
+        gradient = self._generate_gradient(percentages)
+        for idx, line in enumerate(iter_lines):
+            ncalls = line[vc.NCALL_IDX]
+            percall = line[vc.PERCALL_IDX]
+
+            n = fn_names[idx]
+            curr = fn_points[n] if n in fn_points else []
+            fn_points[n] = curr + [[ncalls, percentages.item(idx), percall, gradient[idx]]]
+
+    def extract_base_lines(self, data):
         lines = [x for x in data if x != []]
-        for l in lines:
-            l[5] = ' '.join(l[5:])
-        np_lines = list(map(lambda line: np.array(line), lines))
-        np_lines = list(filter(lambda line: float(line[1]) > 0, np_lines))
-        time_function_list = np.array(list(map(lambda line: np.take(line, [1, 5]), np_lines)))
-        percentages = list(filter(lambda p: p > significance, self._generate_percentages(time_function_list)))
-        function_names = self.process_function_names(time_function_list[:, 1])
+        #for l in lines:
+        #    l[5] = ' '.join(l[5:])
+        return np.array(list(map(np.array, lines)))
 
-        return percentages, function_names, time_function_list[:, 1]
-
-    # separate function to generate percentages for subsequent iterations beyond the first
-    # because our extractor function excludes lines with runtime = 0
-    # this is incorrect behavior for other iterations as we are still interested in them
-    # the line itself may be absent, which is why times_function_list has placeholder np.arrays
-    def extract_iteration_percentages(self, data, headers, descriptors):
+    def extract_iter_lines(self, iteration_data, descriptors, d):
         descriptor_pool = {descriptor: idx for idx, descriptor in enumerate(descriptors)}
-        pcnt_idx = headers.index(vc.TOTAL_TIME)
-        descriptor_idx = headers.index(vc.DESCRIPTOR)
-        time_function_list = [np.array([0, 0]) for _ in range(len(descriptors))]
+        # in case function is never called in non-baseline iterations
+        iter_lines = [self.DEFAULT_LINE for _ in range(len(descriptors))]
+        for line in iteration_data:
+            if line and line[d] in descriptor_pool:
+                pool_idx = descriptor_pool[line[d]]
+                iter_lines[pool_idx] = np.array(line)
+        return np.array(iter_lines)
 
-        for line in data:
-            if line and line[descriptor_idx] in descriptor_pool:
-                time_function_list[descriptor_pool[line[descriptor_idx]]] = \
-                    np.array([line[pcnt_idx], line[descriptor_idx]])
-
-        return self._generate_percentages(np.asarray(time_function_list))
+    def get_line(self, o, attr):
+        return o[attr] if attr in o else self.DEFAULT_LINE
 
     def process_function_names(self, function_names):
         return [utils.extract_constructor(name) or utils.extract_method(name) or name for name in function_names]
 
-    def _generate_percentages(self, time_function_list):
-        return np.round(time_function_list[:, 0].astype(np.float64) /
-                        np.sum(time_function_list[:, 0].astype(np.float64)) * 100, decimals=1)
+    def _generate_percentages(self, tottime_list):
+        return np.round(tottime_list.astype(np.float64) /
+                        np.sum(tottime_list.astype(np.float64)) * 100, decimals=1)
 
     def _generate_gradient(self, percentages):
         print('Generating gradient')
@@ -114,8 +117,8 @@ class VizFactory:
             gradient.append(base_val - interval*(i % interval_count) - subinterval*int(i / interval_count))
         return [x / 100.0 for x in gradient]
 
-    def _reverse_entries(self, sizes, lines):
+    def _reverse_entries(self, sizes, fn_points):
         sizes.reverse()
 
-        for pcnt, fn, grad in lines:
-            pcnt.reverse()
+        for point_group in fn_points:
+            point_group.reverse()

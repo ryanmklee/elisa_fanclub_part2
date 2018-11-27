@@ -1,12 +1,12 @@
-import plotly
-
 from abc import ABC as abstract_class
 from abc import abstractmethod
+
+import plotly
 
 
 class AbstractViz(abstract_class):
     def __init__(self, lines, n_sizes):
-        self.lines = lines
+        self.fn_pts_map = lines
         self.n_sizes = n_sizes
         self.file_output = None
 
@@ -32,4 +32,3 @@ class AbstractViz(abstract_class):
         # py.plot(fig, filename='marker-h-bar')
 
         self.plot(traces, layout)
-

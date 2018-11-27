@@ -1,8 +1,7 @@
-import plotly
 import plotly.graph_objs as go
 
-from viz.builder.abstract_builder import AbstractViz
 import viz.viz_constants as vc
+from viz.builder.abstract_builder import AbstractViz
 
 
 class Table(AbstractViz):
@@ -12,9 +11,8 @@ class Table(AbstractViz):
 
     def generate_traces(self):
         header_values = [['<b>INPUT SIZES</b>']]
-        header_values.extend([[fn] for pcnt, fn, grad in self.lines])
-
-        cell_values = [self.n_sizes] + [pcnt for pcnt, fn, grad in self.lines]
+        header_values.extend([[fn] for fn in self.fn_pts_map.keys()])
+        cell_values = [self.n_sizes] + [times[:, 1] for times in self.fn_pts_map.values()]
 
         trace = go.Table(
             header=dict(
