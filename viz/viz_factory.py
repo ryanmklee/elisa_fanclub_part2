@@ -69,6 +69,8 @@ class VizFactory:
     def extract_base_functions(self, data, significance):
         print('Filtering data for visualization')
         lines = [x for x in data if x != []]
+        for l in lines:
+            l[5] = ' '.join(l[5:])
         np_lines = list(map(lambda line: np.array(line), lines))
         np_lines = list(filter(lambda line: float(line[1]) > 0, np_lines))
         time_function_list = np.array(list(map(lambda line: np.take(line, [1, 5]), np_lines)))
