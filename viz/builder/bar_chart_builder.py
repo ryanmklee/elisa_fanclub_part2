@@ -6,13 +6,14 @@ import viz.viz_constants as vc
 
 class BarChart(AbstractViz):
     WIDTH = 3
-    BASE_COLOR = 'rgba(0, 0, 0, {})'
+    BASE_COLOR = 'hsv({}, 60%, 100%)'
 
     def __init__(self, lines, n_sizes):
         super().__init__(lines, n_sizes)
         self.file_output = vc.BARCHART_FILE_OUTPUT
 
     def _generate_trace(self, x, y, step):
+        step *= 255
         return go.Bar(
             y=self.n_sizes,
             x=x,
