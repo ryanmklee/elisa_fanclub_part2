@@ -22,3 +22,22 @@ visualize the profiled code.
 User provides the function, data and input size. We handle the code profiling and visualization.
 
 User (provides function, data, input size) -> Profile code -> Generate graph
+
+## How to Run
+
+To run our project by default we loaded in a KNN over a volcano dataset. Please see above to download the dataset. 
+
+`python perf.py -c [CHART_NAME] [iterations]`  
+`CHART_NAME ::= bar, stacked, table, line, area, bubble`  
+`iterations ::= number*`
+
+For example you can run the following parameters
+
+`python perf.py -c bar 10 100`  
+
+will profile and generate a bar graph on KNN over 10 and 100 iterations.
+
+There are also optional arguments you can put in
+
+'-r', '--reverse', reverse ordering of profile entries  
+-t', '--track', including this flag causes the visualization to only track relevant functions from the first iteration, rather than relevant functions for each iteration
