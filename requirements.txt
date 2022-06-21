@@ -1,4 +1,4 @@
 plotly==3.3.0
-numpy==1.15.4
+numpy==1.22.0
 pandas==0.23.1
 scikit_learn==0.20.0
